@@ -23,6 +23,7 @@
 planilha de SPRITES arts
 
 <img src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
+![Image dos sprites do game](./src/main/resources/spriteGame.png)
 
 Padrão para o map do grame
 
