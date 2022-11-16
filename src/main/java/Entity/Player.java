@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import graphics.SpriteSheets;
 
@@ -133,7 +132,7 @@ public class Player extends Entity{
 		}
 		else
 		{
-			graph.drawImage(this.rightPlayer.get(0), 
+			graph.drawImage(this.frontPlayer.get(0), 
 					this.getX(), 
 					this.getY(), 
 					this.getWIDTH(), 

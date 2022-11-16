@@ -36,3 +36,11 @@ player a direção e realizado o movimento, o player anima ao se mover da esqued
 direita e de cima para baixo
 
 ![Movendo e animando o player](./src/main/resources/gifs/gif001.gif)
+
+### Sistema para criação do mapa
+
+Na aula prática foi aprendido sistema para gerar o mapa do game, atravez de um Sprite mapeado 
+com regiões por cores, onde o sistema identifica cada cor e substitui pelos Tiles necessários 
+para gerar a cena.
+
+![Movendo e animando o player](./src/main/resources/gifs/gif002.gif)

@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import Entity.Entity;
 import Entity.Player;
 import graphics.SpriteSheets;
+import world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener
 {
@@ -33,22 +34,24 @@ public class Game extends Canvas implements Runnable, KeyListener
 	public BufferedImage layout;
 	
 	public List<Entity> entity;
-	public SpriteSheets spritesheet;
+	public static SpriteSheets spritesheet;
 	private Player player;
+	private World world;
 	
 	
 	public Game() throws IOException
 	{
 		addKeyListener(this);
-		
 		this.layout = new BufferedImage(Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE, BufferedImage.TYPE_INT_RGB);
 		
 		this.setPreferredSize(new Dimension(Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE));
 		this.SetFrame();
 		
 		this.entity = new ArrayList<Entity>();
-		this.spritesheet = new SpriteSheets("/spriteGame.png");
-		this.player = new Player(0, 0, 64, 64, this.spritesheet.setSprite(32, 0, 16, 16));
+		Game.spritesheet = new SpriteSheets("/spriteGame.png");
+		this.world = new World("/mapa.png");
+		
+		this.player = new Player(0, 0, 48, 48, Game.spritesheet.setSprite(32, 0, 16, 16));
 		this.entity.add(this.player);
 				
 	}
@@ -90,6 +93,8 @@ public class Game extends Canvas implements Runnable, KeyListener
 		graph = bs.getDrawGraphics();
 					
 		graph.drawImage(this.layout, 0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE, null);
+		
+		this.world.Render(graph);
 		
 		for(Entity en : entity)
 		{
@@ -146,6 +151,9 @@ public class Game extends Canvas implements Runnable, KeyListener
 		this.frame.setVisible(true);
 	}
 	
+	/***
+	 * Está lógica encapsula o Controller do game, informando quais teclas serão apertadas para o movimento do character;
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// 
