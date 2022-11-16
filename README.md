@@ -2,7 +2,7 @@
 
 ### Idéias proposta na aula
 
-[ ] - Artes para o jogo /SPRITES
+- [ ] Artes para o jogo /SPRITES
 [] - Sistema para animação do game
 [] - Controlar o player pelo teclado
 [] - Sistema para SHOOTING
