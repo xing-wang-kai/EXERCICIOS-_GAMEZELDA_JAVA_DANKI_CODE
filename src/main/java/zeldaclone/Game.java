@@ -27,15 +27,15 @@ public class Game extends Canvas implements Runnable, KeyListener
 	public Thread thread;
 	
 	public JFrame frame;
-	public final static int WIDTH = 300;
-	public final static int HEIGHT = 180;
-	public final static int SCALE = 3;
+	public final static int WIDTH = 200;
+	public final static int HEIGHT = 150;
+	public final static int SCALE = 4;
 	
 	public BufferedImage layout;
 	
-	public List<Entity> entity;
+	public static List<Entity> entity;
 	public static SpriteSheets spritesheet;
-	private Player player;
+	public static Player player;
 	private World world;
 	
 	
@@ -47,13 +47,14 @@ public class Game extends Canvas implements Runnable, KeyListener
 		this.setPreferredSize(new Dimension(Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE));
 		this.SetFrame();
 		
-		this.entity = new ArrayList<Entity>();
 		Game.spritesheet = new SpriteSheets("/spriteGame.png");
+		
+		Game.entity = new ArrayList<Entity>();
+		Game.player = new Player(0, 0, 48, 48, Game.spritesheet.setSprite(32, 0, 16, 16));
+		Game.entity.add(Game.player);
+		
 		this.world = new World("/mapa.png");
 		
-		this.player = new Player(0, 0, 48, 48, Game.spritesheet.setSprite(32, 0, 16, 16));
-		this.entity.add(this.player);
-				
 	}
 	public static void main(String[] args) throws IOException
 	{
@@ -164,27 +165,27 @@ public class Game extends Canvas implements Runnable, KeyListener
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT
 			|| e.getKeyCode() == KeyEvent.VK_D)
 		{
-			this.player.isRight = true;
-			this.player.isLeft = false;
+			Game.player.isRight = true;
+			Game.player.isLeft = false;
 			
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT
 				|| e.getKeyCode() == KeyEvent.VK_A)
 		{
-			this.player.isLeft = true;
-			this.player.isRight = false;
+			Game.player.isLeft = true;
+			Game.player.isRight = false;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_UP
 				|| e.getKeyCode() == KeyEvent.VK_W)
 		{
-			this.player.isUp = true;
-			this.player.isDown = false;
+			Game.player.isUp = true;
+			Game.player.isDown = false;
 			
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN
 				|| e.getKeyCode() == KeyEvent.VK_S)
 		{
-			this.player.isDown = true;
-			this.player.isUp = false;
+			Game.player.isDown = true;
+			Game.player.isUp = false;
 		}
 		
 	}
@@ -193,27 +194,27 @@ public class Game extends Canvas implements Runnable, KeyListener
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT
 				|| e.getKeyCode() == KeyEvent.VK_D)
 			{
-				this.player.isRight = false;
-				this.player.isLeft = false;
+				Game.player.isRight = false;
+				Game.player.isLeft = false;
 				
 			}else if(e.getKeyCode() == KeyEvent.VK_LEFT
 					|| e.getKeyCode() == KeyEvent.VK_A)
 			{
-				this.player.isRight = false;
-				this.player.isLeft = false;
+				Game.player.isRight = false;
+				Game.player.isLeft = false;
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_UP
 					|| e.getKeyCode() == KeyEvent.VK_W)
 			{
-				this.player.isUp = false;
-				this.player.isDown = false;
+				Game.player.isUp = false;
+				Game.player.isDown = false;
 				
 			}else if(e.getKeyCode() == KeyEvent.VK_DOWN
 					|| e.getKeyCode() == KeyEvent.VK_S)
 			{
-				this.player.isUp = false;
-				this.player.isDown = false;
+				Game.player.isUp = false;
+				Game.player.isDown = false;
 			}
 			
 	}

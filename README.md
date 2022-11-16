@@ -8,7 +8,7 @@
 - [x] Sistema para animação do game
 - [x] Controlar o player pelo teclado
 - [ ] Sistema para SHOOTING
-- [ ] Sistema para geração de MAPA
+- [x ] Sistema para geração de MAPA
 - [ ] Sistema com Leveis
 - [ ] Inimigos do Game
 - [ ] Batalha contra BOSS
@@ -44,3 +44,12 @@ com regiões por cores, onde o sistema identifica cada cor e substitui pelos Til
 para gerar a cena.
 
 ![Movendo e animando o player](./src/main/resources/gifs/gif002.gif)
+
+### Sistema para Camera acompanhar o mapa.
+
+Usando a linguagem de programação java, foi usado metodo para que o player sempre fique 
+no centro da tela e a váriavel da camera que é porcentual da tela de game sempre seja 
+desconsiderada dos objetos renderizados e assim possa ocasionar o efeito de movimento 
+entre o cenário.
+
+![Movendo e animando o player](./src/main/resources/gifs/gif003.gif)

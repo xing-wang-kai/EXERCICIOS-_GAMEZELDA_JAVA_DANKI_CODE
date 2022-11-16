@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import graphics.SpriteSheets;
+import world.Camera;
+import zeldaclone.Game;
 
 public class Player extends Entity{
 	
@@ -85,6 +87,9 @@ public class Player extends Entity{
 		{
 			this.y += this.speed;
 		}
+		
+		Camera.x = this.x - ((Game.WIDTH*Game.SCALE)/2);
+		Camera.y = this.y - ((Game.HEIGHT*Game.SCALE)/2);
 	}
 	@Override
 	public void Render(Graphics graph)
@@ -92,8 +97,8 @@ public class Player extends Entity{
 		if(this.isRight)
 		{
 			graph.drawImage(this.rightPlayer.get(this.randomChoice), 
-					this.getX(), 
-					this.getY(), 
+					this.getX() - Camera.x, 
+					this.getY() - Camera.y, 
 					this.getWIDTH(), 
 					this.getHEIGHT(), 
 					null
@@ -102,8 +107,8 @@ public class Player extends Entity{
 		else if(this.isLeft)
 		{
 			graph.drawImage(this.leftPlayer.get(this.randomChoice), 
-					this.getX(), 
-					this.getY(), 
+					this.getX() - Camera.x, 
+					this.getY() - Camera.y,  
 					this.getWIDTH(), 
 					this.getHEIGHT(), 
 					null
@@ -113,8 +118,8 @@ public class Player extends Entity{
 		else if(this.isUp)
 		{
 			graph.drawImage(this.backPlayer.get(this.randomChoice), 
-					this.getX(), 
-					this.getY(), 
+					this.getX() - Camera.x, 
+					this.getY() - Camera.y,  
 					this.getWIDTH(), 
 					this.getHEIGHT(), 
 					null
@@ -123,8 +128,8 @@ public class Player extends Entity{
 		else if(this.isDown)
 		{
 			graph.drawImage(this.frontPlayer.get(this.randomChoice), 
-					this.getX(), 
-					this.getY(), 
+					this.getX() - Camera.x, 
+					this.getY() - Camera.y,  
 					this.getWIDTH(), 
 					this.getHEIGHT(), 
 					null
@@ -133,8 +138,8 @@ public class Player extends Entity{
 		else
 		{
 			graph.drawImage(this.frontPlayer.get(0), 
-					this.getX(), 
-					this.getY(), 
+					this.getX() - Camera.x, 
+					this.getY() - Camera.y,  
 					this.getWIDTH(), 
 					this.getHEIGHT(), 
 					null

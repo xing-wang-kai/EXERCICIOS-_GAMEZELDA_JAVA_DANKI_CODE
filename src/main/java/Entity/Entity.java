@@ -3,7 +3,16 @@ package Entity;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import world.Camera;
+import zeldaclone.Game;
+
 public class Entity {
+	
+	public static BufferedImage ENEMY = Game.spritesheet.setSprite(48, 48, 16, 16);
+	public static BufferedImage LIFE_PACKAGE = Game.spritesheet.setSprite(96, 32, 16, 16);
+	public static BufferedImage WEAPON_PISTOL = Game.spritesheet.setSprite(112, 32, 16, 16);
+	public static BufferedImage BULLET_PISTOL = Game.spritesheet.setSprite(128, 32, 16, 16);
+	
 	
 	protected int x;
 	protected int y;
@@ -27,8 +36,8 @@ public class Entity {
 	public void Render(Graphics graph)
 	{
 		graph.drawImage(this.getEntityImage(), 
-						this.getX(), 
-						this.getY(), 
+						this.getX() - Camera.x, 
+						this.getY() - Camera.y, 
 						this.getWIDTH(), 
 						this.getHEIGHT(), 
 						null
