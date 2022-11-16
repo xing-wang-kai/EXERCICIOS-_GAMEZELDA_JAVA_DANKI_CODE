@@ -2,6 +2,7 @@
 
 ### Idéias proposta na aula
 
+
 - [ ] Artes para o jogo /SPRITES
 - [ ] Sistema de Pause Game, Game Over e Menu
 - [ ] Sistema para animação do game
@@ -16,3 +17,13 @@
 - [ ] Sistema para Danos
 - [ ] Sistema para salvar o Jogo e Para carregar o Game.
 - [ ] Audio e música [final]
+
+#### Arte para o jogos
+
+planilha de SPRITES arts
+
+<img src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
+
+Padrão para o map do grame
+
+<img src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
