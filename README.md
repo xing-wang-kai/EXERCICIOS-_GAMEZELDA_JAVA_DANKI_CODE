@@ -3,6 +3,7 @@
 ### Idéias proposta na aula
 
 - [ ] Artes para o jogo /SPRITES
+- [ ] Sistema de Pause Game, Game Over e Menu
 - [ ] Sistema para animação do game
 - [ ] Controlar o player pelo teclado
 - [ ] Sistema para SHOOTING
