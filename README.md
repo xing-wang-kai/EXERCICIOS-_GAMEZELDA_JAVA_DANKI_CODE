@@ -28,6 +28,7 @@ Padrão para o map do grame
 
 <img src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
 
-### Sistema de Animaçao para o player.
+### Sistema de Animação para o player.
 
-<img src="./src/main/resources/gif/gif001.gif" alt="gif da movimentaçao do game Sprites do Game"/>
+![Alt Text]("./src/main/resources/gif/gif001.gif")
+![Alt Text](./src/main/resources/gif/gif001.gif)
