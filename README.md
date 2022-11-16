@@ -35,4 +35,4 @@ qual tecla o usuário está apertando, desta forma será informado ao methodo da
 player a direção e realizado o movimento, o player anima ao se mover da esqueda para 
 direita e de cima para baixo
 
-![Movendo e animando o Game]("./src/main/resources/gifs/gif001.gif")
+![Movendo e animando o player](./src/main/resources/gifs/gif001.gif)
