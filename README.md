@@ -18,18 +18,17 @@
 - [ ] Sistema para salvar o Jogo e Para carregar o Game.
 - [ ] Audio e música [final]
 
-#### Arte para o jogos
+#### Arte para o jogos : 
 
 planilha de SPRITES arts
 
 <img src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
-[Image dos sprites do game]("./src/main/resources/spriteGame.png")
 
 Padrão para o map do grame
 
 <img src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
 
-### Sistema de Animação para o player.
+### Sistema de Animação para o player :
 
 O sistema de movimento do game utiliza a interface KeyListener do java, onde é verificado 
 qual tecla o usuário está apertando, desta forma será informado ao methodo da class 
