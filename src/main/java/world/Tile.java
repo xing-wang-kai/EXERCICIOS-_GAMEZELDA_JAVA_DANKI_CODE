@@ -22,6 +22,6 @@ public class Tile {
 	
 	public void Render(Graphics graph)
 	{
-		graph.drawImage(sprite, this.x, this.y, 48, 32, null);
+		graph.drawImage(sprite, this.x, this.y, 45, 27, null);
 	}
 }
