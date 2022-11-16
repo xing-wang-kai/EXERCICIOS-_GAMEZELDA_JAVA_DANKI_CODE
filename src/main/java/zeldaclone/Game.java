@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,8 +18,8 @@ import Entity.Entity;
 import Entity.Player;
 import graphics.SpriteSheets;
 
-public class Game extends Canvas implements Runnable{
-	
+public class Game extends Canvas implements Runnable, KeyListener
+{
 	
 	private static final long serialVersionUID = 1L;
 	public boolean isRunning;
@@ -32,10 +34,12 @@ public class Game extends Canvas implements Runnable{
 	
 	public List<Entity> entity;
 	public SpriteSheets spritesheet;
+	private Player player;
 	
 	
 	public Game() throws IOException
 	{
+		addKeyListener(this);
 		
 		this.layout = new BufferedImage(Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE, BufferedImage.TYPE_INT_RGB);
 		
@@ -44,8 +48,8 @@ public class Game extends Canvas implements Runnable{
 		
 		this.entity = new ArrayList<Entity>();
 		this.spritesheet = new SpriteSheets("/spriteGame.png");
-		Player player = new Player(0, 0, 64, 64, this.spritesheet.setSprite(32, 0, 16, 16) );
-		this.entity.add(player);
+		this.player = new Player(0, 0, 64, 64, this.spritesheet.setSprite(32, 0, 16, 16));
+		this.entity.add(this.player);
 				
 	}
 	public static void main(String[] args) throws IOException
@@ -80,7 +84,7 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics graph = layout.getGraphics();
 		
-		graph.setColor(new Color(255, 255, 255));
+		graph.setColor(new Color(0, 0, 0));
 		graph.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
 				
 		graph = bs.getDrawGraphics();
@@ -128,7 +132,7 @@ public class Game extends Canvas implements Runnable{
 			}
 						
 		}
-		
+		this.Stop();
 	}
 	
 	public void SetFrame() 
@@ -141,5 +145,68 @@ public class Game extends Canvas implements Runnable{
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setVisible(true);
 	}
-
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// 
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT
+			|| e.getKeyCode() == KeyEvent.VK_D)
+		{
+			this.player.isRight = true;
+			this.player.isLeft = false;
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT
+				|| e.getKeyCode() == KeyEvent.VK_A)
+		{
+			this.player.isLeft = true;
+			this.player.isRight = false;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_UP
+				|| e.getKeyCode() == KeyEvent.VK_W)
+		{
+			this.player.isUp = true;
+			this.player.isDown = false;
+			
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN
+				|| e.getKeyCode() == KeyEvent.VK_S)
+		{
+			this.player.isDown = true;
+			this.player.isUp = false;
+		}
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT
+				|| e.getKeyCode() == KeyEvent.VK_D)
+			{
+				this.player.isRight = false;
+				this.player.isLeft = false;
+				
+			}else if(e.getKeyCode() == KeyEvent.VK_LEFT
+					|| e.getKeyCode() == KeyEvent.VK_A)
+			{
+				this.player.isRight = false;
+				this.player.isLeft = false;
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_UP
+					|| e.getKeyCode() == KeyEvent.VK_W)
+			{
+				this.player.isUp = false;
+				this.player.isDown = false;
+				
+			}else if(e.getKeyCode() == KeyEvent.VK_DOWN
+					|| e.getKeyCode() == KeyEvent.VK_S)
+			{
+				this.player.isUp = false;
+				this.player.isDown = false;
+			}
+			
+	}
 }

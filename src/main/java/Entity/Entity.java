@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 	
-	private int x;
-	private int y;
-	private int WIDTH;
-	private int HEIGHT;
-	private BufferedImage entityImage;
+	protected int x;
+	protected int y;
+	protected int WIDTH;
+	protected int HEIGHT;
+	protected BufferedImage entityImage;
 	
 	public Entity(int x, int y, int WIDTH, int HEIGHT, BufferedImage bufferImage)
 	{
@@ -40,25 +40,37 @@ public class Entity {
 	{
 		return x;
 	}
-
 	public int getY() 
 	{
 		return y;
 	}
-
 	public int getHEIGHT() 
 	{
 		return HEIGHT;
 	}
-
 	public int getWIDTH() 
 	{
 		return WIDTH;
 	}
-
 	public BufferedImage getEntityImage() {
 		return entityImage;
 	}
 	
-	
+	public void setX(int newX)
+	{
+		this.x = newX;
+	}
+	public void setY(int newY)
+	{
+		this.y = newY;
+	}
+	public void setWIDTH(int newWIDTH)
+	{
+		this.WIDTH = newWIDTH;
+	}
+	public void setHEIGHT(int newHEIGHT)
+	{
+		this.HEIGHT = newHEIGHT;
+	}
+
 }

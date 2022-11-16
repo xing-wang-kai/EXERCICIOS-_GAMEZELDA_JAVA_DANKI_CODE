@@ -27,3 +27,7 @@ planilha de SPRITES arts
 Padrão para o map do grame
 
 <img src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
+
+### Sistema de Animaçao para o player.
+
+<img src="./src/main/resources/gif/gif001.gif" alt="gif da movimentaçao do game Sprites do Game"/>

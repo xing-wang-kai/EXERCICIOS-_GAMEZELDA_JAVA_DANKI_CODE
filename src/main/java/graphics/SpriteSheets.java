@@ -9,9 +9,13 @@ public class SpriteSheets {
 	
 	public BufferedImage Sprite;
 	
-	public SpriteSheets(String path) throws IOException 
+	public SpriteSheets(String path) 
 	{
-		this.Sprite = ImageIO.read(getClass().getResource(path));
+		try {
+			this.Sprite = ImageIO.read(getClass().getResource(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public BufferedImage setSprite(int x, int y, int WIDTH, int HEIGHT) 
