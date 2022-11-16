@@ -30,6 +30,9 @@ Padrão para o map do grame
 
 ### Sistema de Animação para o player.
 
-![TESTE 001]("./src/main/resources/gifs/gif001.gif")
-![TESTE 002](./src/main/resources/gifs/gif001.gif)
-<img src="./src/main/resources/gifs/gif001.gif" alt="Imagem dos Sprites do Game"/>
+O sistema de movimento do game utiliza a interface KeyListener do java, onde é verificado 
+qual tecla o usuário está apertando, desta forma será informado ao methodo da class 
+player a direção e realizado o movimento, o player anima ao se mover da esqueda para 
+direita e de cima para baixo
+
+![Movendo e animando o Game]("./src/main/resources/gifs/gif001.gif")
