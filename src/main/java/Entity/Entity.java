@@ -14,10 +14,8 @@ public class Entity {
 	public static BufferedImage BULLET_PISTOL = Game.spritesheet.setSprite(128, 32, 16, 16);
 	
 	
-	protected int x;
-	protected int y;
-	protected int WIDTH;
-	protected int HEIGHT;
+	protected int x, y;
+	protected int WIDTH, HEIGHT;
 	protected BufferedImage entityImage;
 	
 	public Entity(int x, int y, int WIDTH, int HEIGHT, BufferedImage bufferImage)

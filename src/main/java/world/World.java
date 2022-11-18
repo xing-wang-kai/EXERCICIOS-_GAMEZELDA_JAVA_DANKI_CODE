@@ -22,27 +22,24 @@ public class World {
 	{
 		try 
 		{
-			//Pega A imagem do Mapa em resources
 			BufferedImage map = ImageIO.read(getClass().getResource(path));
 			
-			//define a altura e largura conforme o tamanho total do mapa
 			this.WIDTH = map.getWidth();
 			this.HEIGHT = map.getHeight();
 			
-			//constroe dois array que buscam os valores em cada local do mapa para renderizar o terrain
-			int[] pixels = new int[map.getWidth()*map.getHeight()];
-			tiles = new Tile[map.getWidth()*map.getHeight()];
+			int[] pixels = new int[this.WIDTH*this.HEIGHT];
+			tiles = new Tile[this.WIDTH*this.HEIGHT];
 			
-			map.getRGB(0, 0, map.getWidth(), map.getHeight(), pixels, 0, map.getWidth());
+			map.getRGB(0, 0, this.WIDTH, this.HEIGHT, pixels, 0, this.HEIGHT);
 			
-			for(int xx = 0; xx < map.getWidth(); xx ++)
+			for(int xx = 0; xx < this.WIDTH; xx ++)
 			{
-				for(int yy = 0; yy < map.getHeight(); yy ++)
+				for(int yy = 0; yy < this.HEIGHT; yy ++)
 				{
 					int dimensionX = xx*48;
 					int dimensionY = yy*48;
 					
-					int currentPixel = pixels[xx + (yy * map.getWidth())];
+					int currentPixel = pixels[xx + (yy * this.WIDTH)];
 					if(currentPixel == 0xFFFF0000)
 					{
 						tiles[xx + (yy * this.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
@@ -97,13 +94,9 @@ public class World {
 	}
 	public void Render(Graphics graph)
 	{
-		for(int xx = 0; xx < this.WIDTH; xx ++)
+		for (Tile tile : tiles)
 		{
-			for(int yy = 0; yy < this.HEIGHT; yy ++)
-			{
-				Tile currentTile = tiles[xx + (yy * this.WIDTH)];
-				currentTile.Render(graph);
-			}
+			tile.Render(graph);
 		}
 	}
 
