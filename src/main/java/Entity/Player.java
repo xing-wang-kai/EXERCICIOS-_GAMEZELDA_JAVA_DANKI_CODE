@@ -7,6 +7,7 @@ import java.util.List;
 
 import graphics.SpriteSheets;
 import world.Camera;
+import world.World;
 import zeldaclone.Game;
 
 public class Player extends Entity{
@@ -88,8 +89,8 @@ public class Player extends Entity{
 			this.y += this.speed;
 		}
 		
-		Camera.x = this.x - ((Game.WIDTH*Game.SCALE)/2);
-		Camera.y = this.y - ((Game.HEIGHT*Game.SCALE)/2);
+		Camera.x = Camera.Clamp(this.x - ((Game.WIDTH*Game.SCALE)/2), 0,  Game.WIDTH*Game.SCALE - World.WIDTH);
+		Camera.y = Camera.Clamp(this.y - ((Game.HEIGHT*Game.SCALE)/2), 0, Game.HEIGHT*Game.SCALE - World.HEIGHT);
 	}
 	@Override
 	public void Render(Graphics graph)
