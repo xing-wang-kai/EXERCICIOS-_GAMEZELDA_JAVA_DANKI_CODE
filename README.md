@@ -4,6 +4,7 @@
 
 ### Idéias proposta na aula
 
+:construction:  :construction: :construction: :construction: :construction: :construction: :construction: :construction:
 
 - [x] Artes para o jogo /SPRITES
 - [ ] Sistema de Pause Game, Game Over e Menu
