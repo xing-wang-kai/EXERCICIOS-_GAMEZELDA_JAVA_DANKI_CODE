@@ -10,7 +10,7 @@
 - [x] Sistema para animação do game
 - [x] Controlar o player pelo teclado
 - [ ] Sistema para SHOOTING
-- [x ] Sistema para geração de MAPA
+- [x] Sistema para geração de MAPA
 - [ ] Sistema com Leveis
 - [ ] Inimigos do Game
 - [ ] Batalha contra BOSS
