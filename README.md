@@ -25,11 +25,11 @@
 
 planilha de SPRITES arts
 
-<img width=100% height=100% align="center" src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
+<img width=75% height=75% align="center" src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
 
 Padrão para o map do grame
 
-<img width=100% height=100%  src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
+<img width=45% height=45%  src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
 
 ### Sistema de Animação para o player :
 
