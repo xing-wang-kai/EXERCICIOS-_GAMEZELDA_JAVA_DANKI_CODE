@@ -25,12 +25,13 @@
 
 planilha de SPRITES arts
 
-<img width=75% height=75% align="center" src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
-
+<p align="center">
+    <img width=75% height=75% text-align="center" src="./src/main/resources/spriteGame.png" alt="Imagem dos Sprites do Game"/>
+</p>
 Padrão para o map do grame
-
-<img width=45% height=45%  src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
-
+<p align="center">
+    <img width=45% height=45%  src="./src/main/resources/mapa.png" alt="Imagem dos Sprites do Game"/>
+</p>
 ### Sistema de Animação para o player :
 
 O sistema de movimento do game utiliza a interface KeyListener do java, onde é verificado 

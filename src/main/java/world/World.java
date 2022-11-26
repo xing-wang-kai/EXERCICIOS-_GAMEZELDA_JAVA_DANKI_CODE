@@ -15,8 +15,9 @@ import zeldaclone.Game;
 
 public class World {
 	
-	private Tile[] tiles;
+	private static Tile[] tiles;
 	public static int WIDTH, HEIGHT;
+	public static int TILE_SIZE = 48;
 	
 	public World(String path) 
 	{
@@ -36,29 +37,29 @@ public class World {
 			{
 				for(int yy = 0; yy < World.HEIGHT; yy ++)
 				{
-					int dimensionX = xx*48;
-					int dimensionY = yy*48;
+					int dimensionX = xx*World.TILE_SIZE;
+					int dimensionY = yy*World.TILE_SIZE;
 					
 					int currentPixel = pixels[xx + (yy * World.WIDTH)];
 					if(currentPixel == 0xFFFF0000)
 					{
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
-						Game.entity.add(new Enemy(dimensionX, dimensionY, 48, 48, Entity.ENEMY));
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
+						Game.entity.add(new Enemy(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.ENEMY));
 					}
 					else if(currentPixel == 0xFFFFFFFF)
 					{
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_WALL);
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
+						tiles[xx + (yy * World.WIDTH)] = new TileWall(dimensionX, dimensionY, Tile.TILE_WALL);
 					}
 					else if(currentPixel == 0xFF0000FF)
 					{
 						//ammo
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
-						Game.entity.add(new BulletAmmo(dimensionX, dimensionY, 48, 48, Entity.BULLET_PISTOL));
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
+						Game.entity.add(new BulletAmmo(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.BULLET_PISTOL));
 					}
 					else if(currentPixel == 0xFF00FF00)
 					{
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
 						
 						Game.player.setX(dimensionX-Camera.x);
 						Game.player.setY(dimensionY-Camera.y);
@@ -67,17 +68,17 @@ public class World {
 					else if(currentPixel == 0xFFFFD400)
 					{
 						//medickit
-						tiles[xx + (yy * World.WIDTH)] = new Tile(dimensionX, dimensionY, Tile.TILE_FLOOR);
-						Game.entity.add(new Weapon(dimensionX, dimensionY, 48, 48, Entity.WEAPON_PISTOL));
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
+						Game.entity.add(new Weapon(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.WEAPON_PISTOL));
 					}
 					else if(currentPixel == 0xFF000000)
 					{
-						tiles[xx + (yy * World.WIDTH)] = new Tile(xx*48, yy*48, Tile.TILE_FLOOR);
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(xx*World.TILE_SIZE, yy*World.TILE_SIZE, Tile.TILE_FLOOR);
 					}
 					else if(currentPixel == 0xFFFF00FA)
 					{
-						tiles[xx + (yy * World.WIDTH)] = new Tile(xx*48, yy*48, Tile.TILE_FLOOR);
-						Game.entity.add(new MedicPackage(dimensionX, dimensionY, 48, 48, Entity.LIFE_PACKAGE));
+						tiles[xx + (yy * World.WIDTH)] = new TileFloor(xx*World.TILE_SIZE, yy*World.TILE_SIZE, Tile.TILE_FLOOR);
+						Game.entity.add(new MedicPackage(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.LIFE_PACKAGE));
 					}
 				}
 			}
@@ -94,8 +95,8 @@ public class World {
 	}
 	public void Render(Graphics graph)
 	{
-		int xStart = Camera.x / 48;
-		int yStart = Camera.y / 48;
+		int xStart = Camera.x / World.TILE_SIZE;
+		int yStart = Camera.y / World.TILE_SIZE;
 		
 		int xFinal = xStart +(Game.WIDTH*Game.SCALE/48);
 		int yFinal = yStart + (Game.HEIGHT*Game.SCALE/48);
@@ -110,6 +111,20 @@ public class World {
 			}
 		}
 		
+	}
+	public static boolean IsFree(int Xnext, int Ynext)
+	{
+		int x1 = Xnext/ World.TILE_SIZE;
+		int y1 = Ynext/ World.TILE_SIZE;
+		
+		int x2 = (Xnext + World.TILE_SIZE - 1) /World.TILE_SIZE;
+		int y2 = (Ynext + World.TILE_SIZE -1) /World.TILE_SIZE;;
+		
+		return !(tiles[x1 + (y1 * World.WIDTH)] instanceof TileWall ||
+				 tiles[x1 + (y2 * World.WIDTH)] instanceof TileWall ||
+				 tiles[x2 + (y1 * World.WIDTH)] instanceof TileWall ||
+				 tiles[x2 + (y2 * World.WIDTH)] instanceof TileWall
+				 );
 	}
 
 }

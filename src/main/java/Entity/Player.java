@@ -71,20 +71,20 @@ public class Player extends Entity{
 		}
 		
 		
-		if(isRight)
+		if(isRight && World.IsFree(this.getX() + (int) this.speed, this.getY()))
 		{
 			this.x += this.speed;
 		}
-		else if (isLeft)
+		else if (isLeft && World.IsFree(this.getX() - (int) this.speed, this.getY()) )
 		{
 			this.x -= this.speed;
 		}
 		
-		if(isUp)
+		if(isUp && World.IsFree(this.getX(), this.getY()- (int) this.speed))
 		{
 			this.y -= this.speed;
 		}
-		else if(isDown)
+		else if(isDown && World.IsFree(this.getX(), this.getY()+ (int) this.speed))
 		{
 			this.y += this.speed;
 		}

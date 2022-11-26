@@ -75,7 +75,11 @@ public class Game extends Canvas implements Runnable, KeyListener
 	
 	public void Update()
 	{
-		entity.stream().forEach(enty -> enty.Update());
+		for(Entity enty : entity)
+		{
+			enty.Update();
+		}
+		
 	}
 	public void Render()
 	{
@@ -115,6 +119,7 @@ public class Game extends Canvas implements Runnable, KeyListener
 		int countFrame = 0;
 		double countTimer = System.currentTimeMillis();
 		
+		requestFocus();
 		while(isRunning)
 		{
 			long nowTime = System.nanoTime();
@@ -152,15 +157,12 @@ public class Game extends Canvas implements Runnable, KeyListener
 		this.frame.setVisible(true);
 	}
 	
-	/***
-	 * Está lógica encapsula o Controller do game, informando quais teclas serão apertadas para o movimento do character;
-	 */
-	@Override
+	
 	public void keyTyped(KeyEvent e) {
 		// 
 		
 	}
-	@Override
+	
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT
 			|| e.getKeyCode() == KeyEvent.VK_D)
@@ -189,7 +191,7 @@ public class Game extends Canvas implements Runnable, KeyListener
 		}
 		
 	}
-	@Override
+	
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT
 				|| e.getKeyCode() == KeyEvent.VK_D)
@@ -200,22 +202,21 @@ public class Game extends Canvas implements Runnable, KeyListener
 			}else if(e.getKeyCode() == KeyEvent.VK_LEFT
 					|| e.getKeyCode() == KeyEvent.VK_A)
 			{
-				Game.player.isRight = false;
 				Game.player.isLeft = false;
+				Game.player.isRight = false;
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_UP
-					|| e.getKeyCode() == KeyEvent.VK_W)
-			{
-				Game.player.isUp = false;
-				Game.player.isDown = false;
-				
-			}else if(e.getKeyCode() == KeyEvent.VK_DOWN
-					|| e.getKeyCode() == KeyEvent.VK_S)
-			{
-				Game.player.isUp = false;
-				Game.player.isDown = false;
-			}
+		if(e.getKeyCode() == KeyEvent.VK_UP
+				|| e.getKeyCode() == KeyEvent.VK_W)
+		{
+			Game.player.isUp = false;
+			Game.player.isDown = false;
 			
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN
+				|| e.getKeyCode() == KeyEvent.VK_S)
+		{
+			Game.player.isDown = false;
+			Game.player.isUp = false;
+		}
 	}
 }
