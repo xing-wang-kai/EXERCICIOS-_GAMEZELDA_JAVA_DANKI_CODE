@@ -60,48 +60,54 @@ public class Enemy extends Entity{
 	{
 		if(Game.rand.nextInt(100) < 35)
 		{
-			if((int) this.x < Game.player.getX()
-					&& World.IsFree((int) (this.x + this.speed), this.getY())
-					&& this.IsCollider((int) (this.x + this.speed), this.getY()))
+			if(this.isPlayerCollider())
 			{
-				this.x+= this.speed;
-				this.isMoveLeft = true;
-				this.isMoveRight = false;
-				this.isMoveUp = false;
-				this.isMoveDown = false;
-			}
-			
-			else if ((int) this.x > Game.player.getX()
-					&& World.IsFree((int) (this.x - this.speed), this.getY())
-					&& this.IsCollider((int) (this.x - this.speed), this.getY()))
-			{
-				this.x-= this.speed;
-				this.isMoveLeft = false;
-				this.isMoveRight = true;
-				this.isMoveUp = false;
-				this.isMoveDown = false;
-			}
-			
-			if((int) this.y < Game.player.getY()
-					&& World.IsFree(this.x, (int) (this.y+this.speed))
-					&& this.IsCollider(this.x, (int) (this.y+this.speed)))
-			{
-				this.y += this.speed;
-				this.isMoveLeft = false;
-				this.isMoveRight = false;
-				this.isMoveUp = false;
-				this.isMoveDown = true;
+				if((int) this.x < Game.player.getX()
+						&& World.IsFree((int) (this.x + this.speed), this.getY())
+						&& this.IsCollider((int) (this.x + this.speed), this.getY()))
+				{
+					this.x+= this.speed;
+					this.isMoveLeft = true;
+					this.isMoveRight = false;
+					this.isMoveUp = false;
+					this.isMoveDown = false;
+				}
 				
-			}
-			else if((int) this.y > Game.player.getY()
-					&& World.IsFree(this.x, (int) (this.y-this.speed))
-					&& this.IsCollider(this.x, (int) (this.y-this.speed)))
+				else if ((int) this.x > Game.player.getX()
+						&& World.IsFree((int) (this.x - this.speed), this.getY())
+						&& this.IsCollider((int) (this.x - this.speed), this.getY()))
+				{
+					this.x-= this.speed;
+					this.isMoveLeft = false;
+					this.isMoveRight = true;
+					this.isMoveUp = false;
+					this.isMoveDown = false;
+				}
+				
+				if((int) this.y < Game.player.getY()
+						&& World.IsFree(this.x, (int) (this.y+this.speed))
+						&& this.IsCollider(this.x, (int) (this.y+this.speed)))
+				{
+					this.y += this.speed;
+					this.isMoveLeft = false;
+					this.isMoveRight = false;
+					this.isMoveUp = false;
+					this.isMoveDown = true;
+					
+				}
+				else if((int) this.y > Game.player.getY()
+						&& World.IsFree(this.x, (int) (this.y-this.speed))
+						&& this.IsCollider(this.x, (int) (this.y-this.speed)))
+				{
+					this.y -= this.speed;
+					this.isMoveLeft = false;
+					this.isMoveRight = false;
+					this.isMoveUp = true;
+					this.isMoveDown = false;
+				}
+			}else
 			{
-				this.y -= this.speed;
-				this.isMoveLeft = false;
-				this.isMoveRight = false;
-				this.isMoveUp = true;
-				this.isMoveDown = false;
+				this.setDamager(Game.rand.nextInt(6));
 			}
 		}
 		
@@ -177,6 +183,25 @@ public class Enemy extends Entity{
 			
 		}
 		return true;
+	}
+	
+	public boolean isPlayerCollider()
+	{
+		Rectangle currentEnemy = new Rectangle( this.getX(), this.getY(), 32, 32);
+		Rectangle currentPlayer = new Rectangle( Game.player.getX(), Game.player.getY(), 32, 32);
+		if(currentEnemy.intersects(currentPlayer))
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public void setDamager(int Damager)
+	{
+		if(Game.rand.nextInt(100) < 10)
+		{
+			Game.player.getDamager(1);
+		}
 	}
 
 }

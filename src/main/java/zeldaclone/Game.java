@@ -19,6 +19,7 @@ import Entity.Enemy;
 import Entity.Entity;
 import Entity.Player;
 import graphics.SpriteSheets;
+import graphics.UserInterface;
 import world.World;
 
 public class Game extends Canvas implements Runnable, KeyListener
@@ -38,8 +39,10 @@ public class Game extends Canvas implements Runnable, KeyListener
 	public static List<Entity> entity;
 	public static List<Enemy> enemy;
 	public static SpriteSheets spritesheet;
+	
 	public static Player player;
 	private World world;
+	private UserInterface UI;
 	
 	public static Random rand;
 	
@@ -57,10 +60,12 @@ public class Game extends Canvas implements Runnable, KeyListener
 		
 		Game.enemy = new ArrayList<Enemy>();
 		Game.entity = new ArrayList<Entity>();
+		
 		Game.player = new Player(0, 0, 48, 48, Game.spritesheet.setSprite(32, 0, 16, 16));
 		Game.entity.add(Game.player);
 		
 		this.world = new World("/mapa.png");
+		this.UI = new UserInterface();
 		
 	}
 	public static void main(String[] args) throws IOException
@@ -112,6 +117,8 @@ public class Game extends Canvas implements Runnable, KeyListener
 		{
 			en.Render(graph);
 		}
+		
+		this.UI.Render(graph);
 				
 		bs.show();
 	}

@@ -24,6 +24,9 @@ public class Player extends Entity{
 	
 	private int randomChoiceFrame = 0;
 	private int randomChoice = 0;
+	
+	public double healingPoint = 100, maxHealingPoint = 100;
+	public boolean isLive;
 
 	public Player(int x, int y, int WIDTH, int HEIGHT, BufferedImage bufferImage) {
 		super(x, y, WIDTH, HEIGHT, bufferImage);
@@ -52,6 +55,8 @@ public class Player extends Entity{
 		this.frontPlayer.add(this.spriteSheet.setSprite(112, 16, 16, 16));
 		this.frontPlayer.add(this.spriteSheet.setSprite(128, 16, 16, 16));
 		this.frontPlayer.add(this.spriteSheet.setSprite(144, 16, 16, 16));
+		
+		this.isLive = true;
 				
 	}
 	
@@ -59,38 +64,12 @@ public class Player extends Entity{
 	@Override
 	public void Update() 
 	{
-		this.randomChoiceFrame ++;
-		if(this.randomChoiceFrame >= this.leftPlayer.size())
-		{
-			this.randomChoiceFrame = 0;
-			this.randomChoice ++;
-			if(this.randomChoice >= this.leftPlayer.size())
-			{
-				this.randomChoice = 0;
-			}
-		}
 		
+		this.SetAnimatorSprite();
+		this.setMoviment();
+		this.setCameraMoviment();
+		this.setLifeDamager();
 		
-		if(isRight && World.IsFree(this.getX() + (int) this.speed, this.getY()))
-		{
-			this.x += this.speed;
-		}
-		else if (isLeft && World.IsFree(this.getX() - (int) this.speed, this.getY()) )
-		{
-			this.x -= this.speed;
-		}
-		
-		if(isUp && World.IsFree(this.getX(), this.getY()- (int) this.speed))
-		{
-			this.y -= this.speed;
-		}
-		else if(isDown && World.IsFree(this.getX(), this.getY()+ (int) this.speed))
-		{
-			this.y += this.speed;
-		}
-		
-		Camera.x = Camera.Clamp(this.x - ((Game.WIDTH*Game.SCALE)/2), 0,  Game.WIDTH*Game.SCALE - World.WIDTH);
-		Camera.y = Camera.Clamp(this.y - ((Game.HEIGHT*Game.SCALE)/2), 0, Game.HEIGHT*Game.SCALE - World.HEIGHT);
 	}
 	@Override
 	public void Render(Graphics graph)
@@ -146,6 +125,70 @@ public class Player extends Entity{
 					null
 					);
 		}
+	}
+	
+	public void SetAnimatorSprite()
+	{
+		this.randomChoiceFrame ++;
+		if(this.randomChoiceFrame >= this.leftPlayer.size())
+		{
+			this.randomChoiceFrame = 0;
+			this.randomChoice ++;
+			if(this.randomChoice >= this.leftPlayer.size())
+			{
+				this.randomChoice = 0;
+			}
+		}
+	}
+	
+	public void setMoviment()
+	{
+		if(isRight && World.IsFree(this.getX() + (int) this.speed, this.getY()))
+		{
+			this.x += this.speed;
+		}
+		else if (isLeft && World.IsFree(this.getX() - (int) this.speed, this.getY()) )
+		{
+			this.x -= this.speed;
+		}
+		
+		if(isUp && World.IsFree(this.getX(), this.getY()- (int) this.speed))
+		{
+			this.y -= this.speed;
+		}
+		else if(isDown && World.IsFree(this.getX(), this.getY()+ (int) this.speed))
+		{
+			this.y += this.speed;
+		}
+	}
+	
+	public void setCameraMoviment()
+	{
+		Camera.x = Camera.Clamp(this.x - ((Game.WIDTH*Game.SCALE)/2), 0,  Game.WIDTH*Game.SCALE - World.WIDTH);
+		Camera.y = Camera.Clamp(this.y - ((Game.HEIGHT*Game.SCALE)/2), 0, Game.HEIGHT*Game.SCALE - World.HEIGHT);
+	}
+	
+	public void setLifeDamager()
+	{
+		if(this.healingPoint <= 0 )
+		{
+			this.healingPoint = 0;
+			this.isLive = false;
+			if(!this.isLive) 
+			{
+				System.out.println("VOCE MORREU");
+			}
+		}
+	}
+	
+	public void getDamager(int Damager)
+	{
+		if(this.isLive)
+		{
+			this.healingPoint -= Damager;
+			System.out.println("LIFEPOINT: " + this.healingPoint);
+		}
+		
 	}
 
 }
