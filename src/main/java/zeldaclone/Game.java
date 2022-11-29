@@ -11,9 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
+import Entity.Enemy;
 import Entity.Entity;
 import Entity.Player;
 import graphics.SpriteSheets;
@@ -34,13 +36,17 @@ public class Game extends Canvas implements Runnable, KeyListener
 	public BufferedImage layout;
 	
 	public static List<Entity> entity;
+	public static List<Enemy> enemy;
 	public static SpriteSheets spritesheet;
 	public static Player player;
 	private World world;
 	
+	public static Random rand;
+	
 	
 	public Game() throws IOException
 	{
+		Game.rand = new Random();
 		addKeyListener(this);
 		this.layout = new BufferedImage(Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE, BufferedImage.TYPE_INT_RGB);
 		
@@ -49,6 +55,7 @@ public class Game extends Canvas implements Runnable, KeyListener
 		
 		Game.spritesheet = new SpriteSheets("/spriteGame.png");
 		
+		Game.enemy = new ArrayList<Enemy>();
 		Game.entity = new ArrayList<Entity>();
 		Game.player = new Player(0, 0, 48, 48, Game.spritesheet.setSprite(32, 0, 16, 16));
 		Game.entity.add(Game.player);

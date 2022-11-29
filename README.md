@@ -57,3 +57,9 @@ desconsiderada dos objetos renderizados e assim possa ocasionar o efeito de movi
 entre o cenário.
 
 ![Movendo e animando o player](./src/main/resources/gifs/gif003.gif)
+
+### Sistema de colisão e movimento dos Enimigos.
+
+Aplicados técnica modernas para o sistema de colisão dos enimigos entre si e contra determinados obstaculos do ambientes.
+
+![Movendo e animando o player](./src/main/resources/gifs/gif004.gif)

@@ -1,6 +1,7 @@
 package Entity;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -57,46 +58,53 @@ public class Enemy extends Entity{
 	@Override
 	public void Update()
 	{
-		if((int) this.x < Game.player.getX()
-				&& World.IsFree((int) (this.x + this.speed), this.getY()))
+		if(Game.rand.nextInt(100) < 35)
 		{
-			this.x+= this.speed;
-			this.isMoveLeft = true;
-			this.isMoveRight = false;
-			this.isMoveUp = false;
-			this.isMoveDown = false;
+			if((int) this.x < Game.player.getX()
+					&& World.IsFree((int) (this.x + this.speed), this.getY())
+					&& this.IsCollider((int) (this.x + this.speed), this.getY()))
+			{
+				this.x+= this.speed;
+				this.isMoveLeft = true;
+				this.isMoveRight = false;
+				this.isMoveUp = false;
+				this.isMoveDown = false;
+			}
+			
+			else if ((int) this.x > Game.player.getX()
+					&& World.IsFree((int) (this.x - this.speed), this.getY())
+					&& this.IsCollider((int) (this.x - this.speed), this.getY()))
+			{
+				this.x-= this.speed;
+				this.isMoveLeft = false;
+				this.isMoveRight = true;
+				this.isMoveUp = false;
+				this.isMoveDown = false;
+			}
+			
+			if((int) this.y < Game.player.getY()
+					&& World.IsFree(this.x, (int) (this.y+this.speed))
+					&& this.IsCollider(this.x, (int) (this.y+this.speed)))
+			{
+				this.y += this.speed;
+				this.isMoveLeft = false;
+				this.isMoveRight = false;
+				this.isMoveUp = false;
+				this.isMoveDown = true;
+				
+			}
+			else if((int) this.y > Game.player.getY()
+					&& World.IsFree(this.x, (int) (this.y-this.speed))
+					&& this.IsCollider(this.x, (int) (this.y-this.speed)))
+			{
+				this.y -= this.speed;
+				this.isMoveLeft = false;
+				this.isMoveRight = false;
+				this.isMoveUp = true;
+				this.isMoveDown = false;
+			}
 		}
 		
-		else if ((int) this.x > Game.player.getX()
-				&& World.IsFree((int) (this.x - this.speed), this.getY()))
-		{
-			this.x-= this.speed;
-			this.isMoveLeft = false;
-			this.isMoveRight = true;
-			this.isMoveUp = false;
-			this.isMoveDown = false;
-		}
-		
-		if((int) this.y < Game.player.getY()
-				&& World.IsFree(this.x, (int) (this.y+this.speed)))
-		{
-			this.y += this.speed;
-			this.isMoveLeft = false;
-			this.isMoveRight = false;
-			this.isMoveUp = false;
-			this.isMoveDown = true;
-			
-		}
-		else if((int) this.y > Game.player.getY()
-				&& World.IsFree(this.x, (int) (this.y-this.speed)))
-		{
-			this.y -= this.speed;
-			this.isMoveLeft = false;
-			this.isMoveRight = false;
-			this.isMoveUp = true;
-			this.isMoveDown = false;
-			
-		}
 		
 		this.timerToAnimator ++;
 		if(this.timerToAnimator > 4)
@@ -150,6 +158,25 @@ public class Enemy extends Entity{
 					this.getHEIGHT(), 
 					null);
 		}
+	}
+	
+	public boolean IsCollider(int xNext, int yNext)
+	{
+		Rectangle current = new Rectangle(xNext, yNext, World.TILE_SIZE/2, World.TILE_SIZE/2);
+		for(int i = 0; i < Game.enemy.size(); i++)
+		{
+			Enemy enemy= Game.enemy.get(i);
+			if(enemy == this)
+				continue;
+
+			Rectangle verifyObjectCollider = new Rectangle(enemy.getX(), enemy.getY(), World.TILE_SIZE/2, World.TILE_SIZE/2);
+			if(verifyObjectCollider.intersects(current))
+			{
+				return false;
+			}
+			
+		}
+		return true;
 	}
 
 }

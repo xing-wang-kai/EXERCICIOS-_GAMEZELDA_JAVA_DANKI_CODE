@@ -44,7 +44,9 @@ public class World {
 					if(currentPixel == 0xFFFF0000)
 					{
 						tiles[xx + (yy * World.WIDTH)] = new TileFloor(dimensionX, dimensionY, Tile.TILE_FLOOR);
-						Game.entity.add(new Enemy(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.ENEMY));
+						Enemy enemy = new Enemy(dimensionX, dimensionY, World.TILE_SIZE, World.TILE_SIZE, Entity.ENEMY);
+						Game.entity.add(enemy);
+						Game.enemy.add(enemy);
 					}
 					else if(currentPixel == 0xFFFFFFFF)
 					{
@@ -98,8 +100,8 @@ public class World {
 		int xStart = Camera.x / World.TILE_SIZE;
 		int yStart = Camera.y / World.TILE_SIZE;
 		
-		int xFinal = xStart +(Game.WIDTH*Game.SCALE/48);
-		int yFinal = yStart + (Game.HEIGHT*Game.SCALE/48);
+		int xFinal = xStart +(Game.WIDTH*Game.SCALE/World.TILE_SIZE);
+		int yFinal = yStart + (Game.HEIGHT*Game.SCALE/World.TILE_SIZE);
 				
 		for(int xx = xStart; xx <= xFinal; xx++)
 		{
